@@ -76,6 +76,11 @@
 
 </head>
 <body>
+<script>
+function myFunction() {
+  alert("Please login before you book ticket");
+}
+</script>
     <div id="fh5co-wrapper">
         <div id="fh5co-page">
 
@@ -98,7 +103,7 @@
                                 </li>
                                 <li><a href="flight.html">Fare</a></li>
                                 <li><a href="flight.html">Register</a></li>
-                                <li><a href="flight.html">Login</a></li>
+                                <li>@Html.ActionLink("Login", "Login", "Home")</li>
 
                             </ul>
                         </nav>
@@ -194,7 +199,7 @@
                                                         </section>
                                                     </div>
                                                     <div class="col-xs-12">
-                                                        <input type="submit" class="btn btn-primary btn-block" value="Search Flight">
+                                                        <input type="submit" onclick="myFunction()" class="btn btn-primary btn-block" value="Search Flight">
                                                     </div>
                                                 </div>
                                             </div>
@@ -322,7 +327,7 @@
                                                         </section>
                                                     </div>
                                                     <div class="col-xs-12">
-                                                        <input type="submit" class="btn btn-primary btn-block" value="Search Packages">
+                                                        <input class="btn btn-primary btn-block" value="Search Packages">
                                                     </div>
                                                 </div>
                                             </div>

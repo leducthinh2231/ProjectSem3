@@ -1,0 +1,735 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbRailwayReservationAndManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BetweenStation">
+          <Key>
+            <PropertyRef Name="BetweenStationID" />
+          </Key>
+          <Property Name="BetweenStationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrainNo" Type="int" Nullable="false" />
+          <Property Name="TrainScheduleID" Type="int" />
+          <Property Name="StationID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="OridinalNumber" Type="int" Nullable="false" />
+          <Property Name="Distances" Type="int" Nullable="false" />
+          <Property Name="ArrivalTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="DepartureTime" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cancellation">
+          <Key>
+            <PropertyRef Name="CancelID" />
+          </Key>
+          <Property Name="CancelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CancelNo" Type="int" />
+          <Property Name="ReservationID" Type="int" Nullable="false" />
+          <Property Name="PNRID" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CancellationFees" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CancellationRules">
+          <Key>
+            <PropertyRef Name="CancelNo" />
+          </Key>
+          <Property Name="CancelNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Details" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="CancellationFees" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="ClassID" />
+          </Key>
+          <Property Name="ClassID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClassNo" Type="int" Nullable="false" />
+          <Property Name="ClassName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Fees" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Distances" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Passenger">
+          <Key>
+            <PropertyRef Name="PNRID" />
+          </Key>
+          <Property Name="PNRID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PNRNo" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Gender" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="ReservationID" />
+          </Key>
+          <Property Name="ReservationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PNRID" Type="int" Nullable="false" />
+          <Property Name="TrainID" Type="int" Nullable="false" />
+          <Property Name="DateOfTravel" Type="date" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="StartStationCode" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EndStationCode" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CoachNo" Type="int" Nullable="false" />
+          <Property Name="ClassID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TotalPassenger" Type="int" Nullable="false" />
+          <Property Name="SeatNo" Type="int" Nullable="false" />
+          <Property Name="TotalFee" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ReservateDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Station">
+          <Key>
+            <PropertyRef Name="StationID" />
+          </Key>
+          <Property Name="StationID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="RailwayDivisionName" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Train">
+          <Key>
+            <PropertyRef Name="TrainID" />
+          </Key>
+          <Property Name="TrainID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrainNo" Type="int" Nullable="false" />
+          <Property Name="TrainName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="RouteFromTo" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="DepartureTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="NoOfCoach" Type="int" Nullable="false" />
+          <Property Name="NoOfCompartment" Type="int" Nullable="false" />
+          <Property Name="1AC" Type="int" Nullable="false" />
+          <Property Name="2AC" Type="int" Nullable="false" />
+          <Property Name="3AC" Type="int" Nullable="false" />
+          <Property Name="Sleeper" Type="int" Nullable="false" />
+          <Property Name="General" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TrainSchedule">
+          <Key>
+            <PropertyRef Name="TrainScheduleID" />
+          </Key>
+          <Property Name="TrainScheduleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StationID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TrainNo" Type="int" Nullable="false" />
+          <Property Name="StartStationID" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="EndStationID" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Distances" Type="int" Nullable="false" />
+          <Property Name="ArrivalTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="DepartureTime" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="LoginID" />
+          </Key>
+          <Property Name="LoginID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserType" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BetweenStation_Station">
+          <End Role="Station" Type="Self.Station" Multiplicity="1" />
+          <End Role="BetweenStation" Type="Self.BetweenStation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Station">
+              <PropertyRef Name="StationID" />
+            </Principal>
+            <Dependent Role="BetweenStation">
+              <PropertyRef Name="StationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BetweenStation_TrainSchedule">
+          <End Role="TrainSchedule" Type="Self.TrainSchedule" Multiplicity="1" />
+          <End Role="BetweenStation" Type="Self.BetweenStation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainSchedule">
+              <PropertyRef Name="TrainScheduleID" />
+            </Principal>
+            <Dependent Role="BetweenStation">
+              <PropertyRef Name="OridinalNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cancellation_CancellationRules1">
+          <End Role="CancellationRules" Type="Self.CancellationRules" Multiplicity="0..1" />
+          <End Role="Cancellation" Type="Self.Cancellation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CancellationRules">
+              <PropertyRef Name="CancelNo" />
+            </Principal>
+            <Dependent Role="Cancellation">
+              <PropertyRef Name="CancelNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cancellation_Reservation">
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+          <End Role="Cancellation" Type="Self.Cancellation" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Reservation">
+              <PropertyRef Name="ReservationID" />
+            </Principal>
+            <Dependent Role="Cancellation">
+              <PropertyRef Name="CancelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_Class">
+          <End Role="Class" Type="Self.Class" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="ClassID" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="PNRID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_Passenger">
+          <End Role="Passenger" Type="Self.Passenger" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passenger">
+              <PropertyRef Name="PNRID" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="TrainID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_Train">
+          <End Role="Train" Type="Self.Train" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Train">
+              <PropertyRef Name="TrainID" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="TrainID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrainSchedule_Station">
+          <End Role="Station" Type="Self.Station" Multiplicity="1" />
+          <End Role="TrainSchedule" Type="Self.TrainSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Station">
+              <PropertyRef Name="StationID" />
+            </Principal>
+            <Dependent Role="TrainSchedule">
+              <PropertyRef Name="StationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbRailwayReservationAndManagementSystemModelStoreContainer">
+          <EntitySet Name="BetweenStation" EntityType="Self.BetweenStation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cancellation" EntityType="Self.Cancellation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CancellationRules" EntityType="Self.CancellationRules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passenger" EntityType="Self.Passenger" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Station" EntityType="Self.Station" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Train" EntityType="Self.Train" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrainSchedule" EntityType="Self.TrainSchedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BetweenStation_Station" Association="Self.FK_BetweenStation_Station">
+            <End Role="Station" EntitySet="Station" />
+            <End Role="BetweenStation" EntitySet="BetweenStation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BetweenStation_TrainSchedule" Association="Self.FK_BetweenStation_TrainSchedule">
+            <End Role="TrainSchedule" EntitySet="TrainSchedule" />
+            <End Role="BetweenStation" EntitySet="BetweenStation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cancellation_CancellationRules1" Association="Self.FK_Cancellation_CancellationRules1">
+            <End Role="CancellationRules" EntitySet="CancellationRules" />
+            <End Role="Cancellation" EntitySet="Cancellation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cancellation_Reservation" Association="Self.FK_Cancellation_Reservation">
+            <End Role="Reservation" EntitySet="Reservation" />
+            <End Role="Cancellation" EntitySet="Cancellation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Class" Association="Self.FK_Reservation_Class">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Passenger" Association="Self.FK_Reservation_Passenger">
+            <End Role="Passenger" EntitySet="Passenger" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Train" Association="Self.FK_Reservation_Train">
+            <End Role="Train" EntitySet="Train" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrainSchedule_Station" Association="Self.FK_TrainSchedule_Station">
+            <End Role="Station" EntitySet="Station" />
+            <End Role="TrainSchedule" EntitySet="TrainSchedule" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbRailwayReservationAndManagementSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BetweenStation">
+          <Key>
+            <PropertyRef Name="BetweenStationID" />
+          </Key>
+          <Property Name="BetweenStationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrainNo" Type="Int32" Nullable="false" />
+          <Property Name="TrainScheduleID" Type="Int32" />
+          <Property Name="StationID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OridinalNumber" Type="Int32" Nullable="false" />
+          <Property Name="Distances" Type="Int32" Nullable="false" />
+          <Property Name="ArrivalTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="DepartureTime" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Station" Relationship="Self.FK_BetweenStation_Station" FromRole="BetweenStation" ToRole="Station" />
+          <NavigationProperty Name="TrainSchedule" Relationship="Self.FK_BetweenStation_TrainSchedule" FromRole="BetweenStation" ToRole="TrainSchedule" />
+        </EntityType>
+        <EntityType Name="Cancellation">
+          <Key>
+            <PropertyRef Name="CancelID" />
+          </Key>
+          <Property Name="CancelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CancelNo" Type="Int32" />
+          <Property Name="ReservationID" Type="Int32" Nullable="false" />
+          <Property Name="PNRID" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CancellationFees" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="CancellationRule" Relationship="Self.FK_Cancellation_CancellationRules1" FromRole="Cancellation" ToRole="CancellationRules" />
+          <NavigationProperty Name="Reservation" Relationship="Self.FK_Cancellation_Reservation" FromRole="Cancellation" ToRole="Reservation" />
+        </EntityType>
+        <EntityType Name="CancellationRule">
+          <Key>
+            <PropertyRef Name="CancelNo" />
+          </Key>
+          <Property Name="CancelNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Details" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CancellationFees" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Cancellations" Relationship="Self.FK_Cancellation_CancellationRules1" FromRole="CancellationRules" ToRole="Cancellation" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="ClassID" />
+          </Key>
+          <Property Name="ClassID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClassNo" Type="Int32" Nullable="false" />
+          <Property Name="ClassName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fees" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Distances" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservation_Class" FromRole="Class" ToRole="Reservation" />
+        </EntityType>
+        <EntityType Name="Passenger">
+          <Key>
+            <PropertyRef Name="PNRID" />
+          </Key>
+          <Property Name="PNRID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PNRNo" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Gender" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservation_Passenger" FromRole="Passenger" ToRole="Reservation" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="ReservationID" />
+          </Key>
+          <Property Name="ReservationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PNRID" Type="Int32" Nullable="false" />
+          <Property Name="TrainID" Type="Int32" Nullable="false" />
+          <Property Name="DateOfTravel" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StartStationCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EndStationCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CoachNo" Type="Int32" Nullable="false" />
+          <Property Name="ClassID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TotalPassenger" Type="Int32" Nullable="false" />
+          <Property Name="SeatNo" Type="Int32" Nullable="false" />
+          <Property Name="TotalFee" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ReservateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Cancellation" Relationship="Self.FK_Cancellation_Reservation" FromRole="Reservation" ToRole="Cancellation" />
+          <NavigationProperty Name="Class" Relationship="Self.FK_Reservation_Class" FromRole="Reservation" ToRole="Class" />
+          <NavigationProperty Name="Passenger" Relationship="Self.FK_Reservation_Passenger" FromRole="Reservation" ToRole="Passenger" />
+          <NavigationProperty Name="Train" Relationship="Self.FK_Reservation_Train" FromRole="Reservation" ToRole="Train" />
+        </EntityType>
+        <EntityType Name="Station">
+          <Key>
+            <PropertyRef Name="StationID" />
+          </Key>
+          <Property Name="StationID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RailwayDivisionName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BetweenStations" Relationship="Self.FK_BetweenStation_Station" FromRole="Station" ToRole="BetweenStation" />
+          <NavigationProperty Name="TrainSchedules" Relationship="Self.FK_TrainSchedule_Station" FromRole="Station" ToRole="TrainSchedule" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Train">
+          <Key>
+            <PropertyRef Name="TrainID" />
+          </Key>
+          <Property Name="TrainID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrainNo" Type="Int32" Nullable="false" />
+          <Property Name="TrainName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RouteFromTo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DepartureTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="NoOfCoach" Type="Int32" Nullable="false" />
+          <Property Name="NoOfCompartment" Type="Int32" Nullable="false" />
+          <Property Name="C1AC" Type="Int32" Nullable="false" />
+          <Property Name="C2AC" Type="Int32" Nullable="false" />
+          <Property Name="C3AC" Type="Int32" Nullable="false" />
+          <Property Name="Sleeper" Type="Int32" Nullable="false" />
+          <Property Name="General" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservation_Train" FromRole="Train" ToRole="Reservation" />
+        </EntityType>
+        <EntityType Name="TrainSchedule">
+          <Key>
+            <PropertyRef Name="TrainScheduleID" />
+          </Key>
+          <Property Name="TrainScheduleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StationID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TrainNo" Type="Int32" Nullable="false" />
+          <Property Name="StartStationID" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EndStationID" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Distances" Type="Int32" Nullable="false" />
+          <Property Name="ArrivalTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="DepartureTime" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="BetweenStations" Relationship="Self.FK_BetweenStation_TrainSchedule" FromRole="TrainSchedule" ToRole="BetweenStation" />
+          <NavigationProperty Name="Station" Relationship="Self.FK_TrainSchedule_Station" FromRole="TrainSchedule" ToRole="Station" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="LoginID" />
+          </Key>
+          <Property Name="LoginID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserType" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BetweenStation_Station">
+          <End Role="Station" Type="Self.Station" Multiplicity="1" />
+          <End Role="BetweenStation" Type="Self.BetweenStation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Station">
+              <PropertyRef Name="StationID" />
+            </Principal>
+            <Dependent Role="BetweenStation">
+              <PropertyRef Name="StationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BetweenStation_TrainSchedule">
+          <End Role="TrainSchedule" Type="Self.TrainSchedule" Multiplicity="1" />
+          <End Role="BetweenStation" Type="Self.BetweenStation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainSchedule">
+              <PropertyRef Name="TrainScheduleID" />
+            </Principal>
+            <Dependent Role="BetweenStation">
+              <PropertyRef Name="OridinalNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cancellation_CancellationRules1">
+          <End Role="CancellationRules" Type="Self.CancellationRule" Multiplicity="0..1" />
+          <End Role="Cancellation" Type="Self.Cancellation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CancellationRules">
+              <PropertyRef Name="CancelNo" />
+            </Principal>
+            <Dependent Role="Cancellation">
+              <PropertyRef Name="CancelNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cancellation_Reservation">
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+          <End Role="Cancellation" Type="Self.Cancellation" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Reservation">
+              <PropertyRef Name="ReservationID" />
+            </Principal>
+            <Dependent Role="Cancellation">
+              <PropertyRef Name="CancelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_Class">
+          <End Role="Class" Type="Self.Class" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="ClassID" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="PNRID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_Passenger">
+          <End Role="Passenger" Type="Self.Passenger" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passenger">
+              <PropertyRef Name="PNRID" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="TrainID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_Train">
+          <End Role="Train" Type="Self.Train" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Train">
+              <PropertyRef Name="TrainID" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="TrainID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrainSchedule_Station">
+          <End Role="Station" Type="Self.Station" Multiplicity="1" />
+          <End Role="TrainSchedule" Type="Self.TrainSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Station">
+              <PropertyRef Name="StationID" />
+            </Principal>
+            <Dependent Role="TrainSchedule">
+              <PropertyRef Name="StationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbRailwayReservationAndManagementSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BetweenStations" EntityType="Self.BetweenStation" />
+          <EntitySet Name="Cancellations" EntityType="Self.Cancellation" />
+          <EntitySet Name="CancellationRules" EntityType="Self.CancellationRule" />
+          <EntitySet Name="Classes" EntityType="Self.Class" />
+          <EntitySet Name="Passengers" EntityType="Self.Passenger" />
+          <EntitySet Name="Reservations" EntityType="Self.Reservation" />
+          <EntitySet Name="Stations" EntityType="Self.Station" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Trains" EntityType="Self.Train" />
+          <EntitySet Name="TrainSchedules" EntityType="Self.TrainSchedule" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_BetweenStation_Station" Association="Self.FK_BetweenStation_Station">
+            <End Role="Station" EntitySet="Stations" />
+            <End Role="BetweenStation" EntitySet="BetweenStations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BetweenStation_TrainSchedule" Association="Self.FK_BetweenStation_TrainSchedule">
+            <End Role="TrainSchedule" EntitySet="TrainSchedules" />
+            <End Role="BetweenStation" EntitySet="BetweenStations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cancellation_CancellationRules1" Association="Self.FK_Cancellation_CancellationRules1">
+            <End Role="CancellationRules" EntitySet="CancellationRules" />
+            <End Role="Cancellation" EntitySet="Cancellations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cancellation_Reservation" Association="Self.FK_Cancellation_Reservation">
+            <End Role="Reservation" EntitySet="Reservations" />
+            <End Role="Cancellation" EntitySet="Cancellations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Class" Association="Self.FK_Reservation_Class">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="Reservation" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Passenger" Association="Self.FK_Reservation_Passenger">
+            <End Role="Passenger" EntitySet="Passengers" />
+            <End Role="Reservation" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Train" Association="Self.FK_Reservation_Train">
+            <End Role="Train" EntitySet="Trains" />
+            <End Role="Reservation" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrainSchedule_Station" Association="Self.FK_TrainSchedule_Station">
+            <End Role="Station" EntitySet="Stations" />
+            <End Role="TrainSchedule" EntitySet="TrainSchedules" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbRailwayReservationAndManagementSystemModelStoreContainer" CdmEntityContainer="dbRailwayReservationAndManagementSystemEntities">
+          <EntitySetMapping Name="BetweenStations">
+            <EntityTypeMapping TypeName="dbRailwayReservationAndManagementSystemModel.BetweenStation">
+              <MappingFragment StoreEntitySet="BetweenStation">
+                <ScalarProperty Name="BetweenStationID" ColumnName="BetweenStationID" />
+                <ScalarProperty Name="TrainNo" ColumnName="TrainNo" />
+                <ScalarProperty Name="TrainScheduleID" ColumnName="TrainScheduleID" />
+                <ScalarProperty Name="StationID" ColumnName="StationID" />
+                <ScalarProperty Name="OridinalNumber" ColumnName="OridinalNumber" />
+                <ScalarProperty Name="Distances" ColumnName="Distances" />
+                <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
+                <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cancellations">
+            <EntityTypeMapping TypeName="dbRailwayReservationAndManagementSystemModel.Cancellation">
+              <MappingFragment StoreEntitySet="Cancellation">
+                <ScalarProperty Name="CancelID" ColumnName="CancelID" />
+                <ScalarProperty Name="CancelNo" ColumnName="CancelNo" />
+                <ScalarProperty Name="ReservationID" ColumnName="ReservationID" />
+                <ScalarProperty Name="PNRID" ColumnName="PNRID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CancellationFees" ColumnName="CancellationFees" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CancellationRules">
+            <EntityTypeMapping TypeName="dbRailwayReservationAndManagementSystemModel.CancellationRule">
+              <MappingFragment StoreEntitySet="CancellationRules">
+                <ScalarProperty Name="CancelNo" ColumnName="CancelNo" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="CancellationFees" ColumnName="CancellationFees" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Classes">
+            <EntityTypeMapping TypeName="dbRailwayReservationAndManagementSystemModel.Class">
+              <MappingFragment StoreEntitySet="Class">
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+                <ScalarProperty Name="ClassNo" ColumnName="ClassNo" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="Fees" ColumnName="Fees" />
+                <ScalarProperty Name="Distances" ColumnName="Distances" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passengers">
+            <EntityTypeMapping TypeName="dbRailwayReservationAndManagementSystemModel.Passenger">
+              <MappingFragment StoreEntitySet="Passenger">
+                <ScalarProperty Name="PNRID" ColumnName="PNRID" />
+                <ScalarProperty Name="PNRNo" ColumnName="PNRNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reservations">
+            <EntityTypeMapping TypeName="dbRailwayReservationAndManagementSystemModel.Reservation">
+              <MappingFragment StoreEntitySet="Reservation">
+                <ScalarProperty Name="ReservationID" ColumnName="ReservationID" />
+                <ScalarProperty Name="PNRID" ColumnName="PNRID" />
+                <ScalarProperty Name="TrainID" ColumnName="TrainID" />
+                <ScalarProperty Name="DateOfTravel" ColumnName="DateOfTravel" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StartStationCode" ColumnName="StartStationCode" />
+                <ScalarProperty Name="EndStationCode" ColumnName="EndStationCode" />
+                <ScalarProperty Name="CoachNo" ColumnName="CoachNo" />
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+                <ScalarProperty Name="TotalPassenger" ColumnName="TotalPassenger" />
+                <ScalarProperty Name="SeatNo" ColumnName="SeatNo" />
+                <ScalarProperty Name="TotalFee" ColumnName="TotalFee" />
+                <ScalarProperty Name="ReservateDate" ColumnName="ReservateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stations">
+            <EntityTypeMapping TypeName="dbRailwayReservationAndManagementSystemModel.Station">
+              <MappingFragment StoreEntitySet="Station">
+                <ScalarProperty Name="StationID" ColumnName="StationID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RailwayDivisionName" ColumnName="RailwayDivisionName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="dbRailwayReservationAndManagementSystemModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trains">
+            <EntityTypeMapping TypeName="dbRailwayReservationAndManagementSystemModel.Train">
+              <MappingFragment StoreEntitySet="Train">
+                <ScalarProperty Name="TrainID" ColumnName="TrainID" />
+                <ScalarProperty Name="TrainNo" ColumnName="TrainNo" />
+                <ScalarProperty Name="TrainName" ColumnName="TrainName" />
+                <ScalarProperty Name="RouteFromTo" ColumnName="RouteFromTo" />
+                <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+                <ScalarProperty Name="NoOfCoach" ColumnName="NoOfCoach" />
+                <ScalarProperty Name="NoOfCompartment" ColumnName="NoOfCompartment" />
+                <ScalarProperty Name="C1AC" ColumnName="1AC" />
+                <ScalarProperty Name="C2AC" ColumnName="2AC" />
+                <ScalarProperty Name="C3AC" ColumnName="3AC" />
+                <ScalarProperty Name="Sleeper" ColumnName="Sleeper" />
+                <ScalarProperty Name="General" ColumnName="General" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrainSchedules">
+            <EntityTypeMapping TypeName="dbRailwayReservationAndManagementSystemModel.TrainSchedule">
+              <MappingFragment StoreEntitySet="TrainSchedule">
+                <ScalarProperty Name="TrainScheduleID" ColumnName="TrainScheduleID" />
+                <ScalarProperty Name="StationID" ColumnName="StationID" />
+                <ScalarProperty Name="TrainNo" ColumnName="TrainNo" />
+                <ScalarProperty Name="StartStationID" ColumnName="StartStationID" />
+                <ScalarProperty Name="EndStationID" ColumnName="EndStationID" />
+                <ScalarProperty Name="Distances" ColumnName="Distances" />
+                <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
+                <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="dbRailwayReservationAndManagementSystemModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
