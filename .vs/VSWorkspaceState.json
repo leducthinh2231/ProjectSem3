@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\RailwayReservationAndManagement",
+    "\\RailwayReservationAndManagement\\RailwayReservationAndManagement",
+    "\\RailwayReservationAndManagement\\RailwayReservationAndManagement\\Controllers",
+    "\\RailwayReservationAndManagement\\RailwayReservationAndManagement\\Views",
+    "\\RailwayReservationAndManagement\\RailwayReservationAndManagement\\Views\\Home"
+  ],
+  "SelectedNode": "\\RailwayReservationAndManagement\\RailwayReservationAndManagement\\Views\\Home\\Login.cshtml",
+  "PreviewInSolutionExplorer": false
+}

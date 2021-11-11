@@ -1,0 +1,64 @@
+﻿
+@model RailwayReservationAndManagement.Models.User
+@{
+    ViewBag.Title = "Login";
+}
+<head>
+    <style>
+        body {
+            background-color: #5286F3;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .simple-login-container {
+            width: 300px;
+            max-width: 100%;
+            margin: 50px auto;
+        }
+
+            .simple-login-container h2 {
+                text-align: center;
+                font-size: 20px;
+            }
+
+            .simple-login-container .btn-login {
+                background-color: #FF5964;
+                color: #fff;
+            }
+
+        a {
+            color: #fff;
+        }
+    </style>
+
+</head>
+<h2>Login</h2>
+<div class="simple-login-container">
+    <h2>Login Form</h2>
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="row">
+            <div class="col-md-12 form-group">
+                @Html.TextBoxFor(m => m.Name, "", new { @type = "text", @class = "form-control", @placeholder = "Username", @required = "required" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                @Html.TextBoxFor(m => m.Password, "", new { @type = "password", @class = "form-control", @placeholder = "Password", @required = "required" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <input type="submit" class="btn btn-block btn-login " value="Login">
+            </div>
+        </div>
+    }
+    @ViewBag.Error
+    <div class="row">
+        <div class="col-md-12">
+        </div>
+    </div>
+</div>
