@@ -32,8 +32,10 @@ namespace RailwayReservationAndManagement.Models
         public int C3AC { get; set; }
         public int Sleeper { get; set; }
         public int General { get; set; }
+        public int Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservation> Reservations { get; set; }
+        public virtual TrainSchedule TrainSchedule { get; set; }
     }
 }

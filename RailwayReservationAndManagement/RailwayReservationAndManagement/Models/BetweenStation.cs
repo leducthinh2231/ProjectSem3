@@ -15,9 +15,8 @@ namespace RailwayReservationAndManagement.Models
     public partial class BetweenStation
     {
         public int BetweenStationID { get; set; }
-        public int TrainNo { get; set; }
-        public Nullable<int> TrainScheduleID { get; set; }
-        public string StationID { get; set; }
+        public int TrainID { get; set; }
+        public int StationID { get; set; }
         public int OridinalNumber { get; set; }
         public int Distances { get; set; }
         public System.TimeSpan ArrivalTime { get; set; }

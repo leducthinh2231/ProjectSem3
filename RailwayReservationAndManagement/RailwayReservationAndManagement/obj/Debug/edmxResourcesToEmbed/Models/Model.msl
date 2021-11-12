@@ -5,8 +5,7 @@
       <EntityTypeMapping TypeName="dbRailwayReservationAndManagementSystemModel.BetweenStation">
         <MappingFragment StoreEntitySet="BetweenStation">
           <ScalarProperty Name="BetweenStationID" ColumnName="BetweenStationID" />
-          <ScalarProperty Name="TrainNo" ColumnName="TrainNo" />
-          <ScalarProperty Name="TrainScheduleID" ColumnName="TrainScheduleID" />
+          <ScalarProperty Name="TrainID" ColumnName="TrainID" />
           <ScalarProperty Name="StationID" ColumnName="StationID" />
           <ScalarProperty Name="OridinalNumber" ColumnName="OridinalNumber" />
           <ScalarProperty Name="Distances" ColumnName="Distances" />
@@ -18,9 +17,8 @@
     <EntitySetMapping Name="Cancellations">
       <EntityTypeMapping TypeName="dbRailwayReservationAndManagementSystemModel.Cancellation">
         <MappingFragment StoreEntitySet="Cancellation">
-          <ScalarProperty Name="CancelID" ColumnName="CancelID" />
-          <ScalarProperty Name="CancelNo" ColumnName="CancelNo" />
           <ScalarProperty Name="ReservationID" ColumnName="ReservationID" />
+          <ScalarProperty Name="CancelNo" ColumnName="CancelNo" />
           <ScalarProperty Name="PNRID" ColumnName="PNRID" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="CancellationFees" ColumnName="CancellationFees" />
@@ -44,6 +42,7 @@
           <ScalarProperty Name="ClassName" ColumnName="ClassName" />
           <ScalarProperty Name="Fees" ColumnName="Fees" />
           <ScalarProperty Name="Distances" ColumnName="Distances" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -84,6 +83,7 @@
           <ScalarProperty Name="Code" ColumnName="Code" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="RailwayDivisionName" ColumnName="RailwayDivisionName" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -113,20 +113,21 @@
           <ScalarProperty Name="C3AC" ColumnName="3AC" />
           <ScalarProperty Name="Sleeper" ColumnName="Sleeper" />
           <ScalarProperty Name="General" ColumnName="General" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TrainSchedules">
       <EntityTypeMapping TypeName="dbRailwayReservationAndManagementSystemModel.TrainSchedule">
         <MappingFragment StoreEntitySet="TrainSchedule">
-          <ScalarProperty Name="TrainScheduleID" ColumnName="TrainScheduleID" />
+          <ScalarProperty Name="TrainID" ColumnName="TrainID" />
           <ScalarProperty Name="StationID" ColumnName="StationID" />
-          <ScalarProperty Name="TrainNo" ColumnName="TrainNo" />
           <ScalarProperty Name="StartStationID" ColumnName="StartStationID" />
           <ScalarProperty Name="EndStationID" ColumnName="EndStationID" />
           <ScalarProperty Name="Distances" ColumnName="Distances" />
           <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
           <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -137,6 +138,7 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

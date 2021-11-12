@@ -21,10 +21,11 @@ namespace RailwayReservationAndManagement.Models
             this.TrainSchedules = new HashSet<TrainSchedule>();
         }
     
-        public string StationID { get; set; }
+        public int StationID { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
         public string RailwayDivisionName { get; set; }
+        public int Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BetweenStation> BetweenStations { get; set; }

@@ -22,9 +22,10 @@ namespace RailwayReservationAndManagement.Models
     
         public int ClassID { get; set; }
         public int ClassNo { get; set; }
-        public string ClassName { get; set; }
+        public int ClassName { get; set; }
         public decimal Fees { get; set; }
         public int Distances { get; set; }
+        public int Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservation> Reservations { get; set; }

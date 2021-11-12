@@ -14,9 +14,8 @@ namespace RailwayReservationAndManagement.Models
     
     public partial class Cancellation
     {
-        public int CancelID { get; set; }
-        public Nullable<int> CancelNo { get; set; }
         public int ReservationID { get; set; }
+        public Nullable<int> CancelNo { get; set; }
         public int PNRID { get; set; }
         public int Status { get; set; }
         public decimal CancellationFees { get; set; }

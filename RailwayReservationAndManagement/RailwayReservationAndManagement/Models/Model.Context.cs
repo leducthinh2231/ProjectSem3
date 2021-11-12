@@ -10,7 +10,6 @@
 namespace RailwayReservationAndManagement.Models
 {
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
@@ -37,6 +36,5 @@ namespace RailwayReservationAndManagement.Models
         public virtual DbSet<Train> Trains { get; set; }
         public virtual DbSet<TrainSchedule> TrainSchedules { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public IEnumerable<object> User { get; internal set; }
     }
 }
