@@ -20,17 +20,18 @@ namespace RailwayReservationAndManagement.Models
             this.BetweenStations = new HashSet<BetweenStation>();
         }
     
-        public int TrainScheduleID { get; set; }
-        public string StationID { get; set; }
-        public int TrainNo { get; set; }
+        public int TrainID { get; set; }
+        public int StationID { get; set; }
         public string StartStationID { get; set; }
         public string EndStationID { get; set; }
         public int Distances { get; set; }
         public System.TimeSpan ArrivalTime { get; set; }
         public System.TimeSpan DepartureTime { get; set; }
+        public int Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BetweenStation> BetweenStations { get; set; }
         public virtual Station Station { get; set; }
+        public virtual Train Train { get; set; }
     }
 }
