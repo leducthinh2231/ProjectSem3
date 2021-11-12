@@ -51,7 +51,7 @@ namespace RailwayReservationAndManagement.Controllers
                         return RedirectToAction("Index", "Admin");
                     }
 
-                    //User type
+                    //User type = 1
                     else if (data.UserType.Equals(1))
                     {
                         return RedirectToAction("Index", "User");

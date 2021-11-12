@@ -5,8 +5,9 @@
     "\\RailwayReservationAndManagement\\RailwayReservationAndManagement",
     "\\RailwayReservationAndManagement\\RailwayReservationAndManagement\\Controllers",
     "\\RailwayReservationAndManagement\\RailwayReservationAndManagement\\Views",
-    "\\RailwayReservationAndManagement\\RailwayReservationAndManagement\\Views\\Home"
+    "\\RailwayReservationAndManagement\\RailwayReservationAndManagement\\Views\\Home",
+    "\\RailwayReservationAndManagement\\RailwayReservationAndManagement\\Views\\Shared"
   ],
-  "SelectedNode": "\\RailwayReservationAndManagement\\RailwayReservationAndManagement\\Views\\Home\\Login.cshtml",
+  "SelectedNode": "\\RailwayReservationAndManagement\\RailwayReservationAndManagement\\Views\\Shared\\_Layout.cshtml",
   "PreviewInSolutionExplorer": false
 }

@@ -76,11 +76,6 @@
 
 </head>
 <body>
-<script>
-function myFunction() {
-  alert("Please login before you book ticket");
-}
-</script>
     <div id="fh5co-wrapper">
         <div id="fh5co-page">
 
@@ -88,15 +83,15 @@ function myFunction() {
                 <div class="container">
                     <div class="nav-header">
                         <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-                        <h1 id="fh5co-logo"><a href="index.html"><i class="icon-airplane"></i>Travel</a></h1>
+                        <h1 id="fh5co-logo">@Html.ActionLink("Travel", "Index", "Home")<i class="icon-airplane"></i></h1>
                         <!-- START #fh5co-menu-wrap -->
                         <nav id="fh5co-menu-wrap" role="navigation">
                             <ul class="sf-menu" id="fh5co-primary-menu">
-                                <li class="active"><a href="index.html">Home</a></li>
+                                <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
                                 <li>
                                     <a href="vacation.html" class="fh5co-sub-ddown">Trains</a>
                                     <ul class="fh5co-sub-menu">
-                                        <li><a href="#">Book Now</a></li>
+                                        <li>@Html.ActionLink("Book now", "Login", "Home")</li>
                                         <li><a href="#">Train Schedule</a></li>
                                         <li><a href="#">Cancel Ticket</a></li>
                                     </ul>

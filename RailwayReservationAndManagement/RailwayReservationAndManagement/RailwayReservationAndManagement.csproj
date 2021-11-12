@@ -297,6 +297,13 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="LoginContent\all.min.css" />
+    <Content Include="LoginContent\bootstrap.bundle.min.js" />
+    <Content Include="LoginContent\bootstrap.min.css" />
+    <Content Include="LoginContent\jquery.easing.min.js" />
+    <Content Include="LoginContent\jquery.min.js" />
+    <Content Include="LoginContent\ruang-admin.min.css" />
+    <Content Include="LoginContent\ruang-admin.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -309,9 +316,9 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
